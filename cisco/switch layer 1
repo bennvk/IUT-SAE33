@@ -1,0 +1,147 @@
+hostname SW-SIEGE-L3-2
+!
+!
+no profinet
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 000a.f333.ab01
+ ip address 10.10.10.2 255.255.255.0
+ standby 10 ip 10.10.10.254
+ standby 10 preempt
+!
+interface Vlan20
+ mac-address 000a.f333.ab02
+ ip address 10.20.20.2 255.255.255.0
+ standby 20 ip 10.20.20.254
+ standby 20 preempt
+!
+interface Vlan30
+ mac-address 000a.f333.ab03
+ ip address 10.30.30.2 255.255.255.0
+ standby 30 ip 10.30.30.254
+ standby 30 preempt
+!
+interface Vlan40
+ mac-address 000a.f333.ab04
+ ip address 10.40.40.2 255.255.255.0
+ standby 40 ip 10.40.40.254
+ standby 40 preempt
+!
+interface Vlan50
+ mac-address 000a.f333.ab05
+ ip address 10.50.50.2 255.255.255.0
+ standby 50 ip 10.50.50.254
+ standby 50 preempt
+!
+interface Vlan60
+ mac-address 000a.f333.ab06
+ ip address 10.60.60.2 255.255.255.0
+ standby 60 ip 10.60.60.254
+ standby 60 preempt
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
