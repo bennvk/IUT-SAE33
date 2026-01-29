@@ -1,1 +1,171 @@
+ap_siege#sh run
+Building configuration...
+
+Current configuration : 3305 bytes
+!
+! Last configuration change at 17:58:58 UTC Fri Mar 1 2002
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname ap_succursale
+!
+!
+logging rate-limit console 9
+enable secret 5 $1$t4Ma$xIfWGWzlai3/JZRO70NRg/
+!
+no aaa new-model
+no ip cef
+!
+!
+!
+!
+dot11 syslog
+!         
+dot11 ssid Societe5-Invite
+   vlan 60
+   max-associations 20
+   authentication open 
+   mbssid guest-mode
+!
+dot11 ssid Societe5-Perso
+   vlan 50
+   authentication open 
+   authentication key-management wpa version 2
+   mbssid guest-mode
+   wpa-psk ascii 7 0333520D0F3B245F5A584B56
+!
+!
+dot11 guest
+!
+!
+!
+username Cisco password 7 05280F1C2243
+!
+!
+bridge irb
+!         
+!
+!
+interface Dot11Radio0
+ no ip address
+ !
+ encryption mode ciphers aes-ccm 
+ !
+ encryption vlan 50 mode ciphers aes-ccm 
+ !
+ ssid Societe5-Invite
+ !
+ ssid Societe5-Perso
+ !
+ antenna gain 0
+ mbssid
+ station-role root
+ bridge-group 1
+ bridge-group 1 subscriber-loop-control
+ bridge-group 1 spanning-disabled
+ bridge-group 1 block-unknown-source
+ no bridge-group 1 source-learning
+ no bridge-group 1 unicast-flooding
+!         
+interface Dot11Radio0.50
+ encapsulation dot1Q 50
+ bridge-group 50
+ bridge-group 50 subscriber-loop-control
+ bridge-group 50 spanning-disabled
+ bridge-group 50 block-unknown-source
+ no bridge-group 50 source-learning
+ no bridge-group 50 unicast-flooding
+!
+interface Dot11Radio0.60
+ encapsulation dot1Q 60
+ bridge-group 60
+ bridge-group 60 subscriber-loop-control
+ bridge-group 60 spanning-disabled
+ bridge-group 60 block-unknown-source
+ no bridge-group 60 source-learning
+ no bridge-group 60 unicast-flooding
+!
+interface Dot11Radio1
+ no ip address
+ !
+ encryption mode ciphers aes-ccm 
+ !        
+ encryption vlan 50 mode ciphers aes-ccm 
+ !
+ ssid Societe5-Invite
+ !
+ ssid Societe5-Perso
+ !
+ antenna gain 0
+ peakdetect
+ no dfs band block
+ mbssid
+ channel dfs
+ station-role root
+ bridge-group 1
+ bridge-group 1 subscriber-loop-control
+ bridge-group 1 block-unknown-source
+ no bridge-group 1 source-learning
+ no bridge-group 1 unicast-flooding
+!
+interface Dot11Radio1.50
+ encapsulation dot1Q 50
+ bridge-group 50
+ bridge-group 50 subscriber-loop-control
+ bridge-group 50 spanning-disabled
+ bridge-group 50 block-unknown-source
+ no bridge-group 50 source-learning
+ no bridge-group 50 unicast-flooding
+!
+interface Dot11Radio1.60
+ encapsulation dot1Q 60
+ bridge-group 60
+ bridge-group 60 subscriber-loop-control
+ bridge-group 60 spanning-disabled
+ bridge-group 60 block-unknown-source
+ no bridge-group 60 source-learning
+ no bridge-group 60 unicast-flooding
+!
+interface GigabitEthernet0
+ no ip address
+ duplex auto
+ speed auto
+ bridge-group 1
+ bridge-group 1 spanning-disabled
+ no bridge-group 1 source-learning
+!
+interface GigabitEthernet0.50
+ encapsulation dot1Q 50
+ bridge-group 50
+ bridge-group 50 spanning-disabled
+ no bridge-group 50 source-learning
+!
+interface GigabitEthernet0.60
+ encapsulation dot1Q 60
+ bridge-group 60
+ bridge-group 60 spanning-disabled
+ no bridge-group 60 source-learning
+!
+interface BVI1
+ ip address 192.20.20.4 255.255.255.0
+!
+ip forward-protocol nd
+ip http server
+no ip http secure-server
+ip http help-path http://www.cisco.com/warp/public/779/smbiz/prodconfig/help/eag
+!
+!
+bridge 1 route ip
+!
+!
+!         
+line con 0
+line vty 0 4
+ login local
+ transport input all
+!
+end
 
