@@ -1,1 +1,47 @@
+sudo adduser membre1
+administrateur@rt-mv:~$ sudo adduser membre1
+Ajout de l'utilisateur « membre1 » ...
+Ajout du nouveau groupe « membre1 » (1001) ...
+Ajout du nouvel utilisateur « membre1 » (1001) avec le groupe « membre1 » ...
+Création du répertoire personnel « /home/membre1 »...
+Copie des fichiers depuis « /etc/skel »...
+Nouveau mot de passe : 
+Retapez le nouveau mot de passe : 
+passwd : le mot de passe a été mis à jour avec succès
+Modification des informations relatives à l'utilisateur membre1
+Entrez la nouvelle valeur ou « Entrée » pour conserver la valeur proposée
+	Nom complet []: 
+	N° de bureau []: 
+	Téléphone professionnel []: 
+	Téléphone personnel []: 
+	Autre []: 
+Ces informations sont-elles correctes ? [O/n] o
+
+sudo adduser admin
+administrateur@rt-mv:~$ sudo adduser admin
+Ajout de l'utilisateur « admin » ...
+Ajout du nouveau groupe « admin » (1002) ...
+Ajout du nouvel utilisateur « admin » (1002) avec le groupe « admin » ...
+Création du répertoire personnel « /home/admin »...
+Copie des fichiers depuis « /etc/skel »...
+Nouveau mot de passe : 
+Retapez le nouveau mot de passe : 
+passwd : le mot de passe a été mis à jour avec succès
+Modification des informations relatives à l'utilisateur admin
+Entrez la nouvelle valeur ou « Entrée » pour conserver la valeur proposée
+	Nom complet []: 
+	N° de bureau []: 
+	Téléphone professionnel []: 
+	Téléphone personnel []: 
+	Autre []: 
+Ces informations sont-elles correctes ? [O/n] o
+
+administrateur@rt-mv:~$ sudo ufw allow 25/tcp
+Les règles ont été mises à jour
+Les règles ont été mises à jour (IPv6)
+administrateur@rt-mv:~$ sudo ufw allow 143/tcp
+Les règles ont été mises à jour
+Les règles ont été mises à jour (IPv6)
+administrateur@rt-mv:~$ sudo apt install thunderbird
+
 
