@@ -1,1 +1,228 @@
 # ---------- Switch-Siège ----------
+
+Current configuration : 4837 bytes
+!
+! Last configuration change at 06:14:31 UTC Mon Mar 1 1993
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-Siege
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username administrateur privilege 15 secret 5 $1$skx1$1/fQ0BVzcbSvygxgU6mjx.
+no aaa new-model
+system mtu routing 1500
+!
+!
+ip domain-name societe5.pepiniere.rt
+!         
+!         
+crypto pki trustpoint TP-self-signed-708067712
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-708067712
+ revocation-check none
+ rsakeypair TP-self-signed-708067712
+!
+!
+crypto pki certificate chain TP-self-signed-708067712
+ certificate self-signed 01
+  30820229 30820192 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 37303830 36373731 32301E17 0D393330 33303130 30303132 
+  365A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3730 38303637 
+  37313230 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  A1F4EAFB EF50FA50 D324005F 4CD5E17B 78027DF2 FD45CF7F 94A9B8FA 58025413 
+  3167BFBA A57027FF A59B2A04 50803F8E 6ECA3F07 C6FA6D0D 8416D3FD FF7E608A 
+  7A6042A6 F1B5D994 A4B6748D D4DBE682 753BF444 18BA7B6D D535D531 A732DD6C 
+  03BD1C9C 2213C656 F9392CF9 AEB78DC9 7CF0C913 E5F21940 33FD1505 84F7D801 
+  02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 0603551D 
+  23041830 168014B0 1D8B1C06 4549F12B D47E7C36 719663FF 44441030 1D060355 
+  1D0E0416 0414B01D 8B1C0645 49F12BD4 7E7C3671 9663FF44 4410300D 06092A86 
+  4886F70D 01010505 00038181 005D7018 80C88836 64A5508A 4FE156FF 427C0067 
+  C9939C32 EE271454 7A7FF714 6261A7FE 087C194B F95ED40C DFEE8B52 A9263BB1 
+  2E5D1557 34B21048 0D1F5686 C75F6136 370564D3 50962699 977286A2 B945B33F 
+  59711F96 3B260CC7 7DEE1B49 F63108A3 956E7855 5F5C42FF 447D53B9 D0EA2206 
+  B4BE8FAD E3E92861 7262FCBC A2
+        quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+ switchport access vlan 30
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+ switchport access vlan 40
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!         
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/14
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface FastEthernet0/25
+ switchport trunk allowed vlan 20,50,60
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/26
+!         
+interface FastEthernet0/27
+!
+interface FastEthernet0/28
+!
+interface FastEthernet0/29
+!
+interface FastEthernet0/30
+!
+interface FastEthernet0/31
+!
+interface FastEthernet0/32
+!
+interface FastEthernet0/33
+!
+interface FastEthernet0/34
+!
+interface FastEthernet0/35
+!
+interface FastEthernet0/36
+!
+interface FastEthernet0/37
+!
+interface FastEthernet0/38
+!
+interface FastEthernet0/39
+!
+interface FastEthernet0/40
+!
+interface FastEthernet0/41
+!
+interface FastEthernet0/42
+!
+interface FastEthernet0/43
+!
+interface FastEthernet0/44
+!
+interface FastEthernet0/45
+!
+interface FastEthernet0/46
+!
+interface FastEthernet0/47
+!
+interface FastEthernet0/48
+!
+interface GigabitEthernet0/1
+!         
+interface GigabitEthernet0/2
+!
+interface GigabitEthernet0/3
+ switchport trunk allowed vlan 10,20,30,40,50,60
+ switchport mode trunk
+!
+interface GigabitEthernet0/4
+ switchport trunk allowed vlan 10,20,30,40,50,60
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+!
+interface Vlan10
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan80
+ ip address 192.80.80.10 255.255.255.0
+ no ip route-cache
+!         
+ip http server
+ip http secure-server
+logging source-interface Vlan10
+logging host 192.10.10.3 transport tcp port 514
+!
+vstack
+!
+line con 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
