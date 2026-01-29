@@ -1,1 +1,172 @@
-#---------- Router-Succursale ----------
+Building configuration...                                                       
+                                                                                
+Current configuration : 2546 bytes                                              
+!                                                                               
+! Last configuration change at 17:02:08 UTC Thu Jan 29 2026                     
+!                                                                               
+version 15.8                                                                    
+service timestamps debug datetime msec                                          
+service timestamps log datetime msec                                            
+no service password-encryption                                                  
+!                                                                               
+hostname R2                                                                     
+!                                                                               
+boot-start-marker                                                               
+boot-end-marker                                                                 
+!                                                                               
+!                                                                               
+!                                                                               
+no aaa new-model                                                                
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+ip cef                                                                          
+no ipv6 cef                                                                     
+!                                                                               
+multilink bundle-name authenticated                                             
+!                                                                               
+!                                                                               
+!                                                                               
+license udi pid C927-4P sn FGL2348L2DZ                                          
+license boot module c900 technology-package securityk9                          
+!                                                                               
+!                                                                               
+vtp version 2                                                                   
+!                                                                               
+redundancy                                                                      
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+controller VDSL 0                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+crypto isakmp policy 10                                                         
+ encr aes                                                                       
+ hash sha256                                                                    
+ authentication pre-share                                                       
+ group 14                                                                       
+crypto isakmp key progtr00 address 10.5.1.2                                     
+crypto isakmp key progtr00 address 10.5.1.1                                     
+!                                                                               
+!                                                                               
+crypto ipsec transform-set myset esp-aes                                        
+ mode tunnel                                                                    
+!                                                                               
+crypto ipsec profile IPSEC_PROFILE                                              
+ set transform-set myset                                                        
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+interface Tunnel1                                                               
+ ip address 172.5.1.2 255.255.255.252                                           
+ ip mtu 1400                                                                    
+ ip tcp adjust-mss 1360                                                         
+ tunnel source 10.5.2.1                                                         
+ tunnel destination 10.5.1.1                                                    
+!                                                                               
+interface ATM0                                                                  
+ no ip address                                                                  
+ shutdown                                                                       
+ no atm ilmi-keepalive                                                          
+!                                                                               
+interface Ethernet0                                                             
+ no ip address                                                                  
+ shutdown                                                                       
+!                                                                               
+interface GigabitEthernet0                                                      
+ switchport trunk allowed vlan 1,2,10,20,30,40,50,60,1002-1005                  
+ switchport mode trunk                                                          
+ no ip address                                                                  
+!                                                                               
+interface GigabitEthernet1                                                      
+ no ip address                                                                  
+!                                                                               
+interface GigabitEthernet2                                                      
+ no ip address                                                                  
+!                                                                               
+interface GigabitEthernet3                                                      
+ no ip address                                                                  
+!                                                                               
+interface GigabitEthernet4                                                      
+ ip address 10.5.2.1 255.0.0.0                                                  
+ shutdown                                                                       
+ duplex auto                                                                    
+ speed auto                                                                     
+!                                                                               
+interface Vlan1                                                                 
+ no ip address                                                                  
+!                                                                               
+interface Vlan10                                                                
+ ip address 192.15.10.2 255.255.255.0                                           
+!                                                                               
+interface Vlan20                                                                
+ ip address 192.25.20.2 255.255.255.0                                           
+!                                                                               
+interface Vlan30                                                                
+ ip address 192.35.30.2 255.255.255.0                                           
+!                                                                               
+interface Vlan40                                                                
+ ip address 192.45.40.2 255.255.255.0                                           
+!                                                                               
+interface Vlan50                                                                
+ ip address 192.55.50.2 255.255.255.0                                           
+!                                                                               
+interface Vlan60                                                                
+ ip address 192.65.60.2 255.255.255.0                                           
+!                                                                               
+router ospf 1                                                                   
+ router-id 4.4.4.4                                                              
+ network 172.5.1.0 0.0.0.3 area 0                                               
+ network 192.15.10.0 0.0.0.255 area 0                                           
+ network 192.25.20.0 0.0.0.255 area 0                                           
+ network 192.35.30.0 0.0.0.255 area 0                                           
+ network 192.45.40.0 0.0.0.255 area 0                                           
+ network 192.55.50.0 0.0.0.255 area 0                                           
+ network 192.65.60.0 0.0.0.255 area 0                                           
+!                                                                               
+ip forward-protocol nd                                                          
+no ip http server                                                               
+no ip http secure-server                                                        
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+tftp-server flash:/firmware/vadsl_module_img.bin                                
+access-list 1 permit 172.5.1.0 0.0.0.2                                          
+!                                                                               
+control-plane                                                                   
+!                                                                               
+!                                                                               
+line con 0                                                                      
+line 4                                                                          
+ no activation-character                                                        
+ transport preferred none                                                       
+ transport input all                                                            
+ transport output all                                                           
+ stopbits 1                                                                     
+line vty 0 3                                                                    
+ login                                                                          
+ transport input none                                                           
+line vty 4                                                                      
+ login local                                                                    
+ transport input ssh                                                            
+!                                                                               
+scheduler allocate 20000 1000                                                   
+!                                                                               
+end    
