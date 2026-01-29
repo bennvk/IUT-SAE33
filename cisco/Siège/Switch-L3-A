@@ -1,1 +1,249 @@
 # ---------- Switch-L3-A ----------
+
+Current configuration : 6039 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-LAYER-A
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+system mtu routing 1500
+ip routing
+ip dhcp excluded-address 192.10.10.100
+ip dhcp excluded-address 192.10.10.200
+ip dhcp excluded-address 192.20.20.100
+ip dhcp excluded-address 192.20.20.200
+ip dhcp excluded-address 192.30.30.100
+ip dhcp excluded-address 192.30.30.200
+ip dhcp excluded-address 192.40.40.100
+ip dhcp excluded-address 192.40.40.200
+ip dhcp excluded-address 192.50.50.100
+ip dhcp excluded-address 192.50.50.200
+ip dhcp excluded-address 192.60.60.100
+ip dhcp excluded-address 192.60.60.200
+ip dhcp excluded-address 192.10.10.1
+ip dhcp excluded-address 192.20.20.1
+ip dhcp excluded-address 192.30.30.1
+ip dhcp excluded-address 192.40.40.1
+ip dhcp excluded-address 192.50.50.1
+ip dhcp excluded-address 192.60.60.1
+ip dhcp excluded-address 192.60.60.2
+ip dhcp excluded-address 192.50.50.2
+ip dhcp excluded-address 192.40.40.2
+ip dhcp excluded-address 192.30.30.2
+ip dhcp excluded-address 192.20.20.2
+ip dhcp excluded-address 192.10.10.2
+ip dhcp excluded-address 192.10.10.55
+!
+ip dhcp pool VLAN10
+   network 192.10.10.0 255.255.255.0
+   default-router 192.10.10.100 
+   dns-server 8.8.8.8 
+!
+ip dhcp pool VLAN20
+   network 192.20.20.0 255.255.255.0
+   default-router 192.20.20.100 
+   dns-server 8.8.8.8 
+!
+ip dhcp pool VLAN30
+   network 192.30.30.0 255.255.255.0
+   default-router 192.30.30.100 
+   dns-server 8.8.8.8 
+!
+ip dhcp pool VLAN40
+   network 192.40.40.0 255.255.255.0
+   default-router 192.40.40.100 
+   dns-server 8.8.8.8 
+!
+ip dhcp pool VLAN50
+   network 192.50.50.0 255.255.255.0
+   default-router 192.50.50.100 
+   dns-server 8.8.8.8 
+!
+ip dhcp pool VLAN60
+   network 192.60.60.0 255.255.255.0
+   default-router 192.60.60.100 
+   dns-server 8.8.8.8 
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1175886848
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1175886848
+ revocation-check none
+ rsakeypair TP-self-signed-1175886848
+!
+!
+crypto pki certificate chain TP-self-signed-1175886848
+ certificate self-signed 01
+  30820243 308201AC A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31313735 38383638 3438301E 170D3933 30333031 30303030 
+  35385A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 31373538 
+  38363834 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100DC35 45E15AB8 3BF19DE3 73E4F75A 44857AC7 A6D0F7A5 21ACFB5D BFF9C2F0 
+  C229E90D 27AE73FF DBBD177A 432CDDE5 38A85D84 7C19E5F3 CF29BBFE 7DC04740 
+  27DC3CFD 2A229CE3 2F32711C FD4C5F2B 9A8AFB4C CBB5248F 39060D0A A93373FD 
+  0EF83DAE C4409F17 A66626F8 07339824 6D2358F7 8B0E2DC6 BDCC3191 D08B72F0 
+  36690203 010001A3 6B306930 0F060355 1D130101 FF040530 030101FF 30160603 
+  551D1104 0F300D82 0B53572D 4C415945 522D412E 301F0603 551D2304 18301680 
+  14B74BDF 6CDE3919 80A4D409 2D41FD50 A9A351BE 83301D06 03551D0E 04160414 
+  B74BDF6C DE391980 A4D4092D 41FD50A9 A351BE83 300D0609 2A864886 F70D0101 
+  04050003 81810057 C08AE06D 1BCADDCE A87294AB 30F48C30 048D9257 09F57BE1 
+  466BC11E AA5BB5E2 B7951A8F 62A8CADE 1DFD7E02 853F2183 B4B7FAC5 0EF47ACC 
+  2D02B011 9C93934F 5765C393 AD9FEFBA 611650E0 61060DF2 6F1597C6 B445C75F 
+  E26FFFD7 2F5B4E72 0848955B DE14322B BF8A2052 88E9ACC1 15477887 FC9E3CE5 
+  3B6C568A CC04E9
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!         
+!
+!
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,50,60
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ no switchport
+ ip address 192.168.10.2 255.255.255.252
+!
+interface FastEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,50,60
+ switchport mode trunk
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!         
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 192.10.10.100 255.255.255.0
+ standby 10 ip 192.10.10.1
+ standby 10 priority 105
+ standby 10 preempt
+!
+interface Vlan20
+ ip address 192.20.20.100 255.255.255.0
+ standby 20 ip 192.20.20.1
+ standby 20 priority 105
+ standby 20 preempt
+!
+interface Vlan30
+ ip address 192.30.30.100 255.255.255.0
+ standby 30 ip 192.30.30.1
+ standby 30 priority 105
+ standby 30 preempt
+!
+interface Vlan40
+ ip address 192.40.40.100 255.255.255.0
+ standby 40 ip 192.40.40.1
+ standby 40 priority 95
+ standby 40 preempt
+!
+interface Vlan50
+ ip address 192.50.50.100 255.255.255.0
+ standby 50 ip 192.50.50.1
+ standby 50 priority 95
+ standby 50 preempt
+!
+interface Vlan60
+ ip address 192.60.60.100 255.255.255.0
+ standby 60 ip 192.60.60.1
+ standby 60 priority 95
+ standby 60 preempt
+!
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ network 192.10.10.0 0.0.0.255 area 0
+ network 192.20.20.0 0.0.0.255 area 0
+ network 192.30.30.0 0.0.0.255 area 0
+ network 192.40.40.0 0.0.0.255 area 0
+ network 192.50.50.0 0.0.0.255 area 0
+ network 192.60.60.0 0.0.0.255 area 0
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.10.1
+ip http server
+ip http secure-server
+!
+!
+logging source-interface Vlan10
+logging 192.10.10.3
+!
+!
+!
+line con 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
