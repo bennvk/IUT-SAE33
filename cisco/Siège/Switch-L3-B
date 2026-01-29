@@ -1,1 +1,248 @@
 # ---------- Switch-L3-B ----------
+
+Current configuration : 5450 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SW-LAYER-B
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username administrateur privilege 15 secret 5 $1$K9Um$tdGgyCMK9lIM8qDGl119L/
+!
+!
+no aaa new-model
+switch 2 provision ws-c3750v2-48ps
+system mtu routing 1500
+ip routing
+ip domain-name societe5.pepiniere.rt
+!         
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1829767296
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1829767296
+ revocation-check none
+ rsakeypair TP-self-signed-1829767296
+!
+!
+crypto pki certificate chain TP-self-signed-1829767296
+ certificate self-signed 01
+  30820259 308201C2 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31383239 37363732 3936301E 170D3933 30333031 30303032 
+  35365A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 38323937 
+  36373239 3630819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100DFB4 B4378A6F 448B9AD9 E5E68D35 1412F9EC A38D8D4E 94E88DF8 CC2D90C5 
+  359B279A 9D6B2B92 EC9CDDFA 91857071 24D98D76 FA8CB1A2 A92FB979 AEFD0BF0 
+  6C9DCB51 21764E77 79B0F010 08524874 79137348 98A88763 A149574E 17C1E1D3 
+  CA753A64 884BD1AE 315468F8 6DBB9148 D1940FF2 229FF3F7 C0A8D9AE FB3EF5C6 
+  32690203 010001A3 8180307E 300F0603 551D1301 01FF0405 30030101 FF302B06 
+  03551D11 04243022 82205357 2D4C4159 45522D42 2E736F63 69657465 352E7065 
+  70696E69 6572652E 7274301F 0603551D 23041830 1680148E C2B8B24F F4C5E901 
+  8C2FEC8A 764E3BDB CFFACE30 1D060355 1D0E0416 04148EC2 B8B24FF4 C5E9018C 
+  2FEC8A76 4E3BDBCF FACE300D 06092A86 4886F70D 01010405 00038181 0026112B 
+  C03267FF 5D5DD4C0 205041EF 17D5CDAB 7B75308D 278264FD 915D3CA7 E1EA9569 
+  89C25E74 AF53429D 2CD9F562 EF1A41D6 6947F899 CCDBBE7D ADFB23C1 CC212DFE 
+  3F93F716 8D650A4A 58626939 4C504D91 56C21399 C4B7552B 04066BF9 7082EB15 
+  6A11C0C6 AF4D9921 1B3ECB47 F0338404 0622C21F EBCC5346 C956D6DB 83
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet2/0/1
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,50,60
+ switchport mode trunk
+!
+interface FastEthernet2/0/2
+ no switchport
+ ip address 192.168.20.2 255.255.255.252
+!
+interface FastEthernet2/0/3
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30,40,50,60
+ switchport mode trunk
+!
+interface FastEthernet2/0/4
+!
+interface FastEthernet2/0/5
+!
+interface FastEthernet2/0/6
+!
+interface FastEthernet2/0/7
+!
+interface FastEthernet2/0/8
+!
+interface FastEthernet2/0/9
+!         
+interface FastEthernet2/0/10
+!
+interface FastEthernet2/0/11
+!
+interface FastEthernet2/0/12
+!
+interface FastEthernet2/0/13
+!
+interface FastEthernet2/0/14
+!
+interface FastEthernet2/0/15
+!
+interface FastEthernet2/0/16
+!
+interface FastEthernet2/0/17
+!
+interface FastEthernet2/0/18
+!
+interface FastEthernet2/0/19
+!
+interface FastEthernet2/0/20
+!
+interface FastEthernet2/0/21
+!
+interface FastEthernet2/0/22
+!
+interface FastEthernet2/0/23
+!
+interface FastEthernet2/0/24
+!
+interface FastEthernet2/0/25
+!
+interface FastEthernet2/0/26
+!
+interface FastEthernet2/0/27
+!
+interface FastEthernet2/0/28
+!
+interface FastEthernet2/0/29
+!
+interface FastEthernet2/0/30
+!
+interface FastEthernet2/0/31
+!
+interface FastEthernet2/0/32
+!         
+interface FastEthernet2/0/33
+!
+interface FastEthernet2/0/34
+!
+interface FastEthernet2/0/35
+!
+interface FastEthernet2/0/36
+!
+interface FastEthernet2/0/37
+!
+interface FastEthernet2/0/38
+!
+interface FastEthernet2/0/39
+!
+interface FastEthernet2/0/40
+!
+interface FastEthernet2/0/41
+!
+interface FastEthernet2/0/42
+!
+interface FastEthernet2/0/43
+!
+interface FastEthernet2/0/44
+!
+interface FastEthernet2/0/45
+!
+interface FastEthernet2/0/46
+!
+interface FastEthernet2/0/47
+!
+interface FastEthernet2/0/48
+!
+interface GigabitEthernet2/0/1
+!
+interface GigabitEthernet2/0/2
+!
+interface GigabitEthernet2/0/3
+!
+interface GigabitEthernet2/0/4
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 192.10.10.200 255.255.255.0
+ standby 10 ip 192.10.10.1
+ standby 10 priority 95
+ standby 10 preempt
+!
+interface Vlan20
+ ip address 192.20.20.200 255.255.255.0
+ standby 20 ip 192.20.20.1
+ standby 20 priority 95
+ standby 20 preempt
+!
+interface Vlan30
+ ip address 192.30.30.200 255.255.255.0
+ standby 30 ip 192.30.30.1
+ standby 30 priority 95
+ standby 30 preempt
+!
+interface Vlan40
+ ip address 192.40.40.200 255.255.255.0
+ standby 40 ip 192.40.40.1
+ standby 40 priority 105
+ standby 40 preempt
+!
+interface Vlan50
+ ip address 192.50.50.200 255.255.255.0
+ standby 50 ip 192.50.50.1
+ standby 50 priority 105
+ standby 50 preempt
+!
+interface Vlan60
+ ip address 192.60.60.200 255.255.255.0
+ standby 60 ip 192.60.60.1
+ standby 60 priority 105
+ standby 60 preempt
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 192.10.10.0 0.0.0.255 area 0
+ network 192.20.20.0 0.0.0.255 area 0
+ network 192.30.30.0 0.0.0.255 area 0
+ network 192.40.40.0 0.0.0.255 area 0
+ network 192.50.50.0 0.0.0.255 area 0
+ network 192.60.60.0 0.0.0.255 area 0
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.20.1
+ip http server
+ip http secure-server
+!
+!
+logging source-interface Vlan10
+logging 192.10.10.3
+!
+!
+!
+line con 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
