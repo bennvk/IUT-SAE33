@@ -1,1 +1,184 @@
 # ---------- Routeur-R1 ----------
+
+Current configuration : 2995 bytes
+!
+! Last configuration change at 02:06:57 UTC Mon Jul 29 2024
+!
+version 15.8
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!         
+!         
+!         
+!         
+!         
+!         
+ip cef    
+no ipv6 cef
+!         
+multilink bundle-name authenticated
+!         
+!         
+!         
+license udi pid C927-4P sn FGL2348L2FX
+license boot module c900 technology-package securityk9
+!         
+!         
+vtp version 2
+!         
+redundancy
+!         
+!         
+!         
+!         
+!         
+controller VDSL 0
+!         
+!         
+!         
+crypto isakmp policy 10
+ encr aes 
+ hash sha256
+ authentication pre-share
+ group 14 
+crypto isakmp key progtr00 address 10.5.1.1       
+!         
+!         
+crypto ipsec transform-set myset esp-aes esp-sha256-hmac 
+ mode tunnel
+!         
+crypto ipsec profile IPSEC_PROFILE
+ set transform-set myset 
+!         
+!         
+!         
+!         
+!         
+!
+!
+interface ATM0
+ no ip address
+ shutdown
+ no atm ilmi-keepalive
+!
+interface Ethernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0
+ switchport access vlan 100
+ switchport mode access
+ no ip address
+!
+interface GigabitEthernet1
+ switchport access vlan 200
+ switchport mode access
+ no ip address
+!
+interface GigabitEthernet2
+ no ip address
+!
+interface GigabitEthernet3
+ no ip address
+!
+interface GigabitEthernet4
+ ip address 10.5.1.1 255.0.0.0
+ ip access-group 1 in
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 192.10.10.2 255.255.255.0
+!
+interface Vlan20
+ ip address 192.20.20.2 255.255.255.0
+!
+interface Vlan30
+ ip address 192.30.30.2 255.255.255.0
+!
+interface Vlan40
+ ip address 192.40.40.2 255.255.255.0
+!
+interface Vlan50
+ ip address 192.50.50.2 255.255.255.0
+!
+interface Vlan60
+ ip address 192.60.60.2 255.255.255.0
+!
+interface Vlan100
+ ip address 192.168.10.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+!
+interface Vlan200
+ ip address 192.168.20.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+!
+router ospf 1
+ router-id 3.3.3.3
+ network 172.5.1.0 0.0.0.3 area 0
+ network 192.10.10.0 0.0.0.255 area 0
+ network 192.20.20.0 0.0.0.255 area 0
+ network 192.30.30.0 0.0.0.255 area 0
+ network 192.40.40.0 0.0.0.255 area 0
+ network 192.50.50.0 0.0.0.255 area 0
+ network 192.60.60.0 0.0.0.255 area 0
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip nat inside source list 1 interface GigabitEthernet4 overload
+ip route 0.0.0.0 0.0.0.0 10.0.0.1
+!
+!
+!
+tftp-server flash:/firmware/vadsl_module_img.bin
+access-list 1 permit 192.10.10.0 0.0.0.255
+access-list 1 permit 192.20.20.0 0.0.0.255
+access-list 1 permit 192.30.30.0 0.0.0.255
+access-list 1 permit 192.40.40.0 0.0.0.255
+access-list 1 permit 192.50.50.0 0.0.0.255
+access-list 1 permit 192.60.60.0 0.0.0.255
+access-list 1 permit 192.168.10.0 0.0.0.3
+access-list 1 permit 192.168.20.0 0.0.0.3
+!
+control-plane
+!
+!
+line con 0
+line 4
+ no activation-character
+ transport preferred none
+ transport input all
+ transport output all
+ stopbits 1
+line vty 0 4
+ login
+ transport input none
+!
+scheduler allocate 20000 1000
+!
+end
