@@ -1,1 +1,30 @@
+coté serveur
 
+cvlc "/home/administrateur/Documents/RnBoi - MON BÉBÉ (Visualizer).mp4" \
+  --sout "#standard{access=http,mux=ts,dst=0.0.0.0:8080}" \
+  --loop \
+  --no-metadata-network-access
+
+
+ss -lntp | grep 8080
+la on voit que le port ecoute
+
+sudo ufw status
+sudo ufw allow 8080/tcp
+
+
+
+
+coté client
+
+http://192.20.20.4:8080
+
+Résumé ultra simple
+
+cvlc sur 192.20.20.4
+
+URL http://192.20.20.4:8080
+
+Pas de /video
+
+VLC doit rester lancé
