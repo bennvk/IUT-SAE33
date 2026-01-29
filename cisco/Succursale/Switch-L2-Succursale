@@ -1,1 +1,203 @@
-# ---------- Switch-L2-Succursale ----------
+hostname SW-SUCCURSALE                                                          
+!                                                                               
+boot-start-marker                                                               
+boot-end-marker                                                                 
+!                                                                               
+!                                                                               
+username admin privilege 15 secret 5 $1$7BH8$Sy7sKjv7rByGpxGami9Lu.             
+no aaa new-model                                                                
+system mtu routing 1500                                                         
+!                                                                               
+!                                                                               
+ip domain-name societe2.pepiniere.rt                                            
+ip name-server 172.18.26.101                                                    
+!                                                                               
+!                                                                               
+crypto pki trustpoint TP-self-signed-4254283392                                 
+ enrollment selfsigned                                                          
+ subject-name cn=IOS-Self-Signed-Certificate-4254283392                         
+ revocation-check none                                                          
+ rsakeypair TP-self-signed-4254283392                                           
+!                                                                               
+!                                                                               
+crypto pki certificate chain TP-self-signed-4254283392                          
+ certificate self-signed 01                                                     
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030       
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274       
+  69666963 6174652D 34323534 32383333 3932301E 170D3933 30333031 30303031       
+  32355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649       
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 32353432       
+  38333339 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281       
+  8100AD53 17395DF1 DE92F8A4 194FA0BC D6C37145 526DCF06 B6B80D01 E120D9EF       
+  474BCA77 02325457 3EF2D99E A539E015 9DAD9C0C A41849D9 4FFF3258 FCE6F792       
+  2380D845 1E68037C 114AE562 DAA79FE6 C4546620 E2C1ECF1 66B0EC98 D856C64E       
+  375EFC15 E7AC83B2 CA7117EA 163CBCAF 1F95A13E B1B860B8 EA02F7D9 C5EA8B4D       
+  DAD10203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603       
+  551D2304 18301680 14BFCED7 83DE5D0B EB37688F BB5C5B55 49D88820 3E301D06       
+  03551D0E 04160414 BFCED783 DE5D0BEB 37688FBB 5C5B5549 D888203E 300D0609       
+  2A864886 F70D0101 05050003 8181001B 3590139F ECBF3E73 E3CAE3EB 35B0BD2A       
+  C54173CA 2728FAC6 AA9667C7 51BAF376 BA8780DD 24908162 187B490A A7893C8A       
+  436CA67E 17B0A830 C7D8195A 52166D2F DFB3B89A AC92E223 C5975F64 C3DCD2F7       
+  90789116 B66DE2AF 85884A59 DDCC76F1 1DA28E67 DE0127C8 0770C1A6 ACD2F6AD       
+  0D87DBCF 390D5E0E FE531D3E 19A09D                                             
+        quit                                                                    
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+spanning-tree mode pvst                                                         
+spanning-tree extend system-id                                                  
+!                                                                               
+vlan internal allocation policy ascending                                       
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+!                                                                               
+interface FastEthernet0/1                                                       
+ switchport access vlan 10                                                      
+ switchport mode access                                                         
+!                                                                               
+interface FastEthernet0/2                                                       
+!                                                                               
+interface FastEthernet0/3                                                       
+!                                                                               
+interface FastEthernet0/4                                                       
+!                                                                               
+interface FastEthernet0/5                                                       
+ switchport access vlan 20                                                      
+ switchport mode access                                                         
+!                                                                               
+interface FastEthernet0/6                                                       
+!                                                                               
+interface FastEthernet0/7                                                       
+!                                                                               
+interface FastEthernet0/8                                                       
+!                                                                               
+interface FastEthernet0/9                                                       
+!                                                                               
+interface FastEthernet0/10                                                      
+!                                                                               
+interface FastEthernet0/11                                                      
+!                                                                               
+interface FastEthernet0/12                                                      
+!                                                                               
+interface FastEthernet0/13                                                      
+!                                                                               
+interface FastEthernet0/14                                                      
+!                                                                               
+interface FastEthernet0/15                                                      
+!                                                                               
+interface FastEthernet0/16                                                      
+!                                                                               
+interface FastEthernet0/17                                                      
+!                                                                               
+interface FastEthernet0/18                                                      
+!                                                                               
+interface FastEthernet0/19                                                      
+!                                                                               
+interface FastEthernet0/20                                                      
+!                                                                               
+interface FastEthernet0/21                                                      
+!                                                                               
+interface FastEthernet0/22                                                      
+!                                                                               
+interface FastEthernet0/23                                                      
+!                                                                               
+interface FastEthernet0/24                                                      
+!                                                                               
+interface FastEthernet0/25                                                      
+!                                                                               
+interface FastEthernet0/26                                                      
+!                                                                               
+interface FastEthernet0/27                                                      
+!                                                                               
+interface FastEthernet0/28                                                      
+!                                                                               
+interface FastEthernet0/29                                                      
+!                                                                               
+interface FastEthernet0/30                                                      
+!                                                                               
+interface FastEthernet0/31                                                      
+!                                                                               
+interface FastEthernet0/32                                                      
+!                                                                               
+interface FastEthernet0/33                                                      
+!                                                                               
+interface FastEthernet0/34                                                      
+!                                                                               
+interface FastEthernet0/35                                                      
+!                                                                               
+interface FastEthernet0/36                                                      
+!                                                                               
+interface FastEthernet0/37                                                      
+!                                                                               
+interface FastEthernet0/38                                                      
+!                                                                               
+interface FastEthernet0/39                                                      
+!                                                                               
+interface FastEthernet0/40                                                      
+!                                                                               
+interface FastEthernet0/41                                                      
+!                                                                               
+interface FastEthernet0/42                                                      
+!                                                                               
+interface FastEthernet0/43                                                      
+!                                                                               
+interface FastEthernet0/44                                                      
+!                                                                               
+interface FastEthernet0/45                                                      
+!                                                                               
+interface FastEthernet0/46                                                      
+!                                                                               
+interface FastEthernet0/47                                                      
+!                                                                               
+interface FastEthernet0/48                                                      
+!                                                                               
+interface GigabitEthernet0/1                                                    
+ switchport mode trunk                                                          
+!                                                                               
+interface GigabitEthernet0/2                                                    
+!                                                                               
+interface GigabitEthernet0/3                                                    
+ switchport trunk allowed vlan 10,20,30,40,50,60                                
+ switchport mode trunk                                                          
+!                                                                               
+interface GigabitEthernet0/4                                                    
+!                                                                               
+interface Vlan1                                                                 
+ no ip address                                                                  
+!                                                                               
+interface Vlan10                                                                
+ ip address 10.10.10.1 255.255.255.0                                            
+!                                                                               
+interface Vlan20                                                                
+ ip address 10.20.20.1 255.255.255.0                                            
+!                                                                               
+interface Vlan30                                                                
+ ip address 10.30.30.1 255.255.255.0                                            
+!                                                                               
+interface Vlan40                                                                
+ ip address 10.40.40.1 255.255.255.0                                            
+!                                                                               
+interface Vlan50                                                                
+ ip address 10.50.50.1 255.255.255.0                                            
+!                                                                               
+interface Vlan60                                                                
+ ip address 10.60.60.1 255.255.255.0                                            
+!                                                                               
+ip http server                                                                  
+ip http secure-server                                                           
+!                                                                               
+vstack                                                                          
+!                                                                               
+line con 0                                                                      
+line vty 0 4                                                                    
+ login local                                                                    
+ transport input ssh                                                            
+line vty 5 15                                                                   
+ login                                                                          
+!                                                                               
+end     
